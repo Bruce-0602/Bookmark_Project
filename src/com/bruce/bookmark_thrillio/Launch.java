@@ -1,13 +1,15 @@
 package com.bruce.bookmark_thrillio;
 
+import java.util.List;
+
 import com.bruce.bookmark_thrillio.entities.Bookmark;
 import com.bruce.bookmark_thrillio.entities.User;
 import com.bruce.bookmark_thrillio.managers.BookmarkManager;
 import com.bruce.bookmark_thrillio.managers.UserManager;
 
 public class Launch {
-	private static User[] users;
-	private static Bookmark[][] bookmarks;
+	private static List<User> users;
+	private static List<List<Bookmark>> bookmarks;
 	
 	private static void loadData() {
 		System.out.println("1. Loading data ...");

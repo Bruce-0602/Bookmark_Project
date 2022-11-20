@@ -1,5 +1,7 @@
 package com.bruce.bookmark_thrillio;
 
+import java.util.List;
+
 import com.bruce.bookmark_thrillio.constants.KidFriendlyStatus;
 import com.bruce.bookmark_thrillio.constants.UserType;
 import com.bruce.bookmark_thrillio.controllers.BookmarkController;
@@ -9,23 +11,21 @@ import com.bruce.bookmark_thrillio.partner.Shareable;
 
 public class View {
 
-	public static void browse(User user, Bookmark[][] bookmarks) {
+	public static void browse(User user, List<List<Bookmark>> bookmarks) {
 		System.out.println("\n" + user.getEmail() + " is browsing items");
-		int bookmarkCount = 0;
 
-		for (Bookmark[] bookmarkList : bookmarks) {
+		for (List<Bookmark> bookmarkList : bookmarks) {
 			for (Bookmark bookmark : bookmarkList) {
 				// Bookmarking
-				if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
+				//if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
 					boolean isBookmarked = getBookmarkDecision(bookmark);
 					if (isBookmarked) {
-						bookmarkCount++;
 
 						BookmarkController.getInstance().saveUserBookmark(user, bookmark);
 
 						System.out.println("New Item Bookmarked: " + bookmark);
 					}
-				}
+				//}
 
 				if (user.getUserType().equals(UserType.EDITOR) || user.getUserType().equals(UserType.CHIEF_EDITOR)) {
 

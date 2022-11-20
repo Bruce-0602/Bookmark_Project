@@ -10,18 +10,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 public class IOUtil {
 	// Static method for Util
-	public static void read(String[] data, String filename) {
+	public static void read(List<String> data, String filename) {
 		// try-with-resource (ARM)
 		// buffer is used for performance increase
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
 			String line;
-			int count = 0;
+//			int count = 0;
 			while ((line = br.readLine()) != null) {
-				data[count] = line;
-				count++;
+				data.add(line);
+//				count++;
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
