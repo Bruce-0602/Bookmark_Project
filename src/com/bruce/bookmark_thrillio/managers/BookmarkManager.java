@@ -1,5 +1,8 @@
 package com.bruce.bookmark_thrillio.managers;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+
 import com.bruce.bookmark_thrillio.dao.BookmarkDao;
 import com.bruce.bookmark_thrillio.entities.Book;
 import com.bruce.bookmark_thrillio.entities.Bookmark;
@@ -7,6 +10,8 @@ import com.bruce.bookmark_thrillio.entities.Movie;
 import com.bruce.bookmark_thrillio.entities.User;
 import com.bruce.bookmark_thrillio.entities.UserBookmark;
 import com.bruce.bookmark_thrillio.entities.WebLink;
+import com.bruce.bookmark_thrillio.util.HttpConnect;
+import com.bruce.bookmark_thrillio.util.IOUtil;
 
 public class BookmarkManager {
 	private static BookmarkManager instance = new BookmarkManager();// for Singleton pattern
@@ -66,7 +71,23 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
-
+		
+		if (bookmark instanceof WebLink) {
+			try {				
+				String url = ((WebLink)bookmark).getUrl();
+				if (!url.endsWith(".pdf")) {
+					String webpage = HttpConnect.download(((WebLink)bookmark).getUrl());
+					if (webpage != null) {
+						IOUtil.write(webpage, bookmark.getId());
+					}
+				}				
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		dao.saveUserBookmark(userBookmark);
 
 	}
