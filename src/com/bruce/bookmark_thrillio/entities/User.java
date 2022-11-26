@@ -1,13 +1,16 @@
 package com.bruce.bookmark_thrillio.entities;
 
+import com.bruce.bookmark_thrillio.constants.Gender;
+import com.bruce.bookmark_thrillio.constants.UserType;
+
 public class User {
 	private long id; // using long considering the number of user could exceed the limit of int
 	private String email;
 	private String password;
 	private String firstName;
 	private String lastName;
-	private int gender;
-	private String userType; // not creating multiple classes of users, because the staff specific methods
+	private Gender gender;
+	private UserType userType; // not creating multiple classes of users, because the staff specific methods
 								// will be implemented in manager classes
 
 	public long getId() {
@@ -50,19 +53,19 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(int gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 
-	public String getUserType() {
+	public UserType getUserType() {
 		return userType;
 	}
 
-	public void setUserType(String userType) {
+	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 

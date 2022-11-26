@@ -4,6 +4,9 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import com.bruce.bookmark_thrillio.constants.BookGenre;
+import com.bruce.bookmark_thrillio.constants.KidFriendlyStatus;
+import com.bruce.bookmark_thrillio.constants.MovieGenre;
 import com.bruce.bookmark_thrillio.dao.BookmarkDao;
 import com.bruce.bookmark_thrillio.entities.Book;
 import com.bruce.bookmark_thrillio.entities.Bookmark;
@@ -26,7 +29,7 @@ public class BookmarkManager {
 	}
 
 	public Movie createMovie(long id, String title, String profileUrl, int releaseYear, String[] cast,
-			String[] directors, String genre, double imdbRating) {
+			String[] directors, MovieGenre genre, double imdbRating) {
 		Movie movie = new Movie();
 		movie.setId(id);
 		movie.setTitle(title);
@@ -40,7 +43,7 @@ public class BookmarkManager {
 		return movie;
 	}
 
-	public Book createBook(long id, String title, int publicationYear, String publisher, String[] authors, String genre,
+	public Book createBook(long id, String title, int publicationYear, String publisher, String[] authors, BookGenre genre,
 			double amazonRating) {
 		Book book = new Book();
 		book.setId(id);
@@ -93,7 +96,7 @@ public class BookmarkManager {
 
 	}
 
-	public void setKidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		bookmark.setKidFriendlyStatus(kidFriendlyStatus);
 		bookmark.setKidFriendlyMarkedBy(user);
 		System.out.println(

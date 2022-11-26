@@ -1,5 +1,6 @@
 package com.bruce.bookmark_thrillio.controllers;
 
+import com.bruce.bookmark_thrillio.constants.KidFriendlyStatus;
 import com.bruce.bookmark_thrillio.entities.Bookmark;
 import com.bruce.bookmark_thrillio.entities.User;
 import com.bruce.bookmark_thrillio.managers.BookmarkManager;
@@ -20,7 +21,7 @@ public class BookmarkController {
 
 	}
 
-	public void setKidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		BookmarkManager.getInstance().setKidFriendlyStatus(user, kidFriendlyStatus, bookmark);
 		
 	}

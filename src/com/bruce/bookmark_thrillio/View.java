@@ -32,7 +32,7 @@ public class View {
 					// Mark as kid-friendly
 					if (bookmark.isKidFriendlyEligible()
 							&& bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)) {
-						String kidFriendlyStatus = getKidFriendlyStatusDecision(bookmark);
+						KidFriendlyStatus kidFriendlyStatus = getKidFriendlyStatusDecision(bookmark);
 						if (!kidFriendlyStatus.equals(KidFriendlyStatus.UNKNOWN)) {
 							BookmarkController.getInstance().setKidFriendlyStatus(user, kidFriendlyStatus, bookmark);
 						}
@@ -57,7 +57,7 @@ public class View {
 		
 	}
 
-	private static String getKidFriendlyStatusDecision(Bookmark bookmark) {
+	private static KidFriendlyStatus getKidFriendlyStatusDecision(Bookmark bookmark) {
 		double randomVal = Math.random();
 
 		// Nested Ternary Operator
