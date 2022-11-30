@@ -2,6 +2,7 @@ package com.bruce.bookmark_thrillio;
 
 import java.util.List;
 
+import com.bruce.bookmark_thrillio.bgjobs.WebpageDownloaderTask;
 import com.bruce.bookmark_thrillio.entities.Bookmark;
 import com.bruce.bookmark_thrillio.entities.User;
 import com.bruce.bookmark_thrillio.managers.BookmarkManager;
@@ -49,6 +50,16 @@ public class Launch {
 	public static void main(String[] args) {
 		loadData();
 		start();
+		
+		// Background Jobs
+		runDownloaderJob();
+	}
+
+
+	private static void runDownloaderJob() {
+		WebpageDownloaderTask task = new WebpageDownloaderTask(true);
+		(new Thread(task)).start();
+		
 	}
 
 }
