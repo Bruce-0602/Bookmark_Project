@@ -52,7 +52,7 @@ public class Launch {
 		start();
 		
 		// Background Jobs
-		runDownloaderJob();
+		// runDownloaderJob();
 	}
 
 

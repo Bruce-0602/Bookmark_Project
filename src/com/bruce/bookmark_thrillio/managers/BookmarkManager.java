@@ -75,23 +75,7 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
-		/*
-		if (bookmark instanceof WebLink) {
-			try {				
-				String url = ((WebLink)bookmark).getUrl();
-				if (!url.endsWith(".pdf")) {
-					String webpage = HttpConnect.download(((WebLink)bookmark).getUrl());
-					if (webpage != null) {
-						IOUtil.write(webpage, bookmark.getId());
-					}
-				}				
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
-		}
-		*/
+		
 		dao.saveUserBookmark(userBookmark);
 
 	}
@@ -99,6 +83,9 @@ public class BookmarkManager {
 	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		bookmark.setKidFriendlyStatus(kidFriendlyStatus);
 		bookmark.setKidFriendlyMarkedBy(user);
+		
+		dao.updateKidFriendlyStatus(bookmark);
+		
 		System.out.println(
 				"Kid-friendly status: " + kidFriendlyStatus + ", Marked by: " + user.getEmail() + ", " + bookmark);
 
@@ -115,6 +102,8 @@ public class BookmarkManager {
 			System.out.println(((WebLink) bookmark).getItemData());
 
 		}
+		
+		dao.shareByInfo(bookmark);
 
 	}
 }
